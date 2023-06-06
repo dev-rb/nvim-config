@@ -40,6 +40,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -84,11 +86,42 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+  },
+
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.diagnostics.write_good,
+          null_ls.builtins.code_actions.gitsigns,
+        },
+        on_attach = function(client)
+          if client.server_capabilities.documentFormattingProvider then
+            vim.cmd(
+              [[
+                augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+                augroup END
+                ]]
+            )
+          end
+        end
+      })
+    end,
   },
 
   {
@@ -108,7 +141,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -122,7 +155,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -187,6 +221,27 @@ require('lazy').setup({
     end
   },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      vim.keymap.set('n', '<C-_>', ":NvimTreeToggle<CR>")
+      vim.keymap.set('n', '<C-e>', ":NvimTreeFocus<CR>")
+      require("nvim-tree").setup({
+        view = {
+          side = "right",
+        },
+        on_attach = function(bufnr)
+          local api = require 'nvim-tree.api'
+          api.config.mappings.default_on_attach(bufnr)
+        end
+      })
+    end,
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim',         opts = {} },
 
@@ -241,6 +296,9 @@ vim.o.hlsearch = true
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+vim.o.colorcolumn = "120"
+vim.o.wrap = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -442,8 +500,8 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  local lspformat = require 'lsp-format'
-  lspformat.on_attach(client)
+  -- local lspformat = require 'lsp-format'
+  -- lspformat.on_attach(client)
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -542,6 +600,8 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

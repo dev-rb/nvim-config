@@ -140,6 +140,11 @@ require('lazy').setup({
     },
   },
 
+  {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  },
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',          opts = {} },
   {
@@ -164,27 +169,78 @@ require('lazy').setup({
   },
 
   {
-    'EdenEast/nightfox.nvim',
+    'folke/tokyonight.nvim',
     priority = 1000,
     lazy = false,
     opts = {
-      options = {
-        transparent = true,
-      },
-      groups = {
-        all = {
-          NormalFloat = { fg = "fg1", bg = "NONE", },
-        },
-      },
+      style = 'night',
+      transparent = true,
+      on_colors = function(colors)
+        colors.fg = "#e6eaff"
+        colors.fg_dark = "#e6eaff"
+        colors.fg_gutter = "#6d728a"
+        colors.comment = "#6772a3"
+      end,
+      on_highlights = function(hl, c)
+        local prompt = "#2d3149"
+        hl.TelescopeNormal = {
+          bg = c.bg_dark,
+          fg = c.fg_dark,
+        }
+        hl.TelescopeBorder = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+        hl.TelescopePromptNormal = {
+          bg = prompt,
+        }
+        hl.TelescopePromptBorder = {
+          bg = prompt,
+          fg = prompt,
+        }
+        hl.TelescopePromptTitle = {
+          bg = prompt,
+          fg = prompt,
+        }
+        hl.TelescopePreviewTitle = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+        hl.TelescopeResultsTitle = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+      end,
     },
     config = function(_, opts)
-      local theme = require 'nightfox'
+      local theme = require 'tokyonight'
       theme.setup(opts)
-      vim.cmd.colorscheme 'carbonfox'
+      vim.cmd.colorscheme 'tokyonight'
       theme.load()
     end,
   },
-
+  -- {
+  --   'EdenEast/nightfox.nvim',
+  --   priority = 1000,
+  --   lazy = false,
+  --   opts = {
+  --     options = {
+  --       transparent = true,
+  --     },
+  --     groups = {
+  --       all = {
+  --         NormalFloat = { fg = "fg1", bg = "NONE", },
+  --       },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     local theme = require 'nightfox'
+  --     theme.setup(opts)
+  --     vim.cmd.colorscheme 'carbonfox'
+  --     theme.load()
+  --   end,
+  -- },
+  --
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -192,7 +248,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'carbonfox',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
       },
@@ -283,77 +339,14 @@ require('lazy').setup({
   --    up-to-date with whatever is in the kickstart repo.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
 }, {})
+
+require('user.general')
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
--- Set highlight on search
-vim.o.hlsearch = true
-
--- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
-
-vim.o.colorcolumn = "120"
-vim.o.wrap = false
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz')
-vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz')
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`

@@ -1,7 +1,7 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = { theme = "tokyodark" }
+M.ui = { theme = "dark_horizon" }
 M.mappings = require "custom.mappings"
 M.plugins = "custom.plugins"
 vim.loader.enable()

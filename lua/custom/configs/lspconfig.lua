@@ -2,7 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "tsserver"}
+local servers = { "html", "cssls", "clangd" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -10,3 +10,15 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+require("typescript").setup {
+  disable_commands = false, -- prevent the plugin from creating Vim commands
+  debug = false, -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true, -- fall back to standard LSP definition on failure
+  },
+  server = {
+    -- pass options to lspconfig's setup method
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+}

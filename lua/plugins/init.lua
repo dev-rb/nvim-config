@@ -171,6 +171,7 @@ local default_plugins = {
         opts = {
           fast_wrap = {},
           disable_filetype = { "TelescopePrompt", "vim" },
+          ignored_next_char = "[%w%.]",
         },
         config = function(_, opts)
           require("nvim-autopairs").setup(opts)

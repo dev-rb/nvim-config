@@ -36,6 +36,9 @@ local M = {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      {
+        "jose-elias-alvarez/typescript.nvim",
+      },
       -- format & linting
       {
         "jose-elias-alvarez/null-ls.nvim",

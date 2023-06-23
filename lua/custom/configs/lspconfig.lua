@@ -2,7 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd" }
+local servers = { "html", "cssls", "clangd", "pyright" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -21,4 +21,12 @@ require("typescript").setup {
     on_attach = on_attach,
     capabilities = capabilities,
   },
+}
+local util = require "lspconfig/util"
+
+lspconfig.pyright.setup {
+  root_dir = function(fname)
+    return util.root_pattern(".git", "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt")(fname)
+      or util.path.dirname(fname)
+  end,
 }

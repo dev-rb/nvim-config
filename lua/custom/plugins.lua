@@ -108,6 +108,18 @@ local M = {
     end,
   },
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    version = "*",
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      extensions_list = {
+        "ui-select",
+      },
+    },
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       view = {

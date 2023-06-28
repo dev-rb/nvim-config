@@ -114,9 +114,7 @@ local M = {
   {
     "nvim-telescope/telescope.nvim",
     opts = {
-      extensions_list = {
-        "ui-select",
-      },
+      extensions_list = { "themes", "terms", "ui-select" },
     },
   },
   {

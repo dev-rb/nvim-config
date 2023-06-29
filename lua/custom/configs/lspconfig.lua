@@ -10,6 +10,23 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- Unocss
+lspconfig.unocss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "html", "javascriptreact", "rescript", "typescriptreact", "vue", "svelte" },
+  root_dir = function(fname)
+    return require("lspconfig.util").root_pattern(
+      "unocss.config.js",
+      "unocss.config.ts",
+      "uno.config.js",
+      "uno.config.ts"
+    )(fname)
+  end,
+}
+
+-- Typescipt
 require("typescript").setup {
   disable_commands = false, -- prevent the plugin from creating Vim commands
   debug = false, -- enable debug logging for commands
@@ -24,6 +41,7 @@ require("typescript").setup {
 }
 local util = require "lspconfig/util"
 
+-- Python
 lspconfig.pyright.setup {
   root_dir = function(fname)
     return util.root_pattern(".git", "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt")(fname)

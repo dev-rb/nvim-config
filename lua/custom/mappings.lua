@@ -4,7 +4,7 @@ local M = {}
 M.disabled = {
   n = {
     ["<C-c>"] = "",
-  }
+  },
 }
 
 -- Your custom mappings
@@ -19,10 +19,17 @@ M.abc = {
       function()
         require("base46").toggle_transparency()
       end,
-      "Toggle Transparency"
+      "Toggle Transparency",
     },
-  }
-
+    ["<leader>cf"] = {
+      "<cmd> foldclose <CR>",
+      "Fold Region",
+    },
+    ["<leader>of"] = {
+      "<cmd> foldopen <CR>",
+      "Unfold Region",
+    },
+  },
 }
 
 return M

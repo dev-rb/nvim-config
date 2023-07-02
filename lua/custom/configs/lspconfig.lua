@@ -1,6 +1,11 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
 local lspconfig = require "lspconfig"
 local servers = { "html", "cssls", "clangd", "pyright" }
 
@@ -10,6 +15,8 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require("ufo").setup()
 
 -- Unocss
 lspconfig.unocss.setup {

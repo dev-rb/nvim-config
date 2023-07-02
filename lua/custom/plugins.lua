@@ -117,6 +117,7 @@ local M = {
       extensions_list = { "themes", "terms", "ui-select" },
     },
   },
+  { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
   {
     "nvim-tree/nvim-tree.lua",
     opts = {

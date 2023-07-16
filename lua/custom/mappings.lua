@@ -15,6 +15,7 @@ M.abc = {
     ["<C-k>"] = { "<C-w>k", "Go to top split" },
     ["<C-l>"] = { "<C-w>l", "Go to right split" },
     ["<leader>2"] = { "<C-w>v", "Split right" },
+    ["<leader>x"] = { "<Cmd> :bp|bd# <CR>", "Close Buffer" },
     ["<leader>tt"] = {
       function()
         require("base46").toggle_transparency()

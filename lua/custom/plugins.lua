@@ -149,6 +149,9 @@ local M = {
       },
     },
   },
+  {
+    "simrat39/rust-tools.nvim",
+  },
 }
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("restore_session", { clear = true }),

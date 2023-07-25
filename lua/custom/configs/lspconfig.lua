@@ -55,3 +55,12 @@ lspconfig.pyright.setup {
       or util.path.dirname(fname)
   end,
 }
+
+local rt = require "rust-tools"
+
+rt.setup {
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+}

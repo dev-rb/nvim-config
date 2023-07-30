@@ -16,8 +16,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require("ufo").setup()
-
 -- Unocss
 lspconfig.unocss.setup {
   on_attach = on_attach,

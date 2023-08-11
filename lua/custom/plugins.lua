@@ -218,6 +218,9 @@ local M = {
   {
     "simrat39/rust-tools.nvim",
   },
+  { "mrjones2014/smart-splits.nvim", lazy = false, opts = {
+    multiplexer_integration = "WezTerm",
+  } },
 }
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("restore_session", { clear = true }),

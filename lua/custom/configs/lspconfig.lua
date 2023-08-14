@@ -81,3 +81,10 @@ lspconfig.gopls.setup {
     },
   },
 }
+require("go").setup {
+  lsp_cfg = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    -- other setups
+  },
+}

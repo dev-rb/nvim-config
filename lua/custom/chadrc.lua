@@ -2,7 +2,7 @@
 local M = {}
 
 M.ui = {
-  theme = "rxyhn",
+  theme = "radium",
   statusline = { theme = "minimal", separator_style = "round" },
   tabufline = { enabled = false },
   nvdash = { load_on_startup = false },

@@ -221,6 +221,20 @@ local M = {
   { "mrjones2014/smart-splits.nvim", lazy = false, opts = {
     multiplexer_integration = "WezTerm",
   } },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
 }
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("restore_session", { clear = true }),

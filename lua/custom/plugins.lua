@@ -220,7 +220,16 @@ local M = {
   },
   { "mrjones2014/smart-splits.nvim", lazy = false, opts = {
     multiplexer_integration = "WezTerm",
-  } },
+  } 
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = false,
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages

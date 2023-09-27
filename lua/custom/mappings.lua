@@ -50,6 +50,10 @@ M.abc = {
       "<cmd> foldopen <CR>",
       "Unfold Region",
     },
+    ["<leader>gg"] = {
+      "<cmd> LazyGit <CR>",
+      "Lazygit",
+    },
   },
 }
 

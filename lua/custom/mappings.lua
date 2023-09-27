@@ -10,6 +10,7 @@ M.disabled = {
 -- Your custom mappings
 M.abc = {
   n = {
+    ["<leader>fd"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find in current buffer" },
     ["<C-h>"] = {
       function()
         require("smart-splits").move_cursor_left()

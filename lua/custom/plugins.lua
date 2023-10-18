@@ -6,6 +6,7 @@ local M = {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "JoosepAlviste/nvim-ts-context-commentstring",
+      "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = {
       ensure_installed = {
@@ -30,6 +31,15 @@ local M = {
       },
       autotag = {
         enable = true,
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+        },
       },
     },
   },
@@ -220,11 +230,10 @@ local M = {
   },
   { "mrjones2014/smart-splits.nvim", lazy = false, opts = {
     multiplexer_integration = "WezTerm",
-  } 
-  },
+  } },
   {
     "kdheepak/lazygit.nvim",
-    lazy = false,
+    cmd = "LazyGit",
     -- optional for floating window border decoration
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -243,6 +252,17 @@ local M = {
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
+  {
+    "dzfrias/arena.nvim",
+    event = { "BufWinEnter" },
+    config = true,
+  },
+  {
+    "kwkarlwang/bufresize.nvim",
+    config = function()
+      require("bufresize").setup()
+    end,
   },
 }
 vim.api.nvim_create_autocmd("VimEnter", {

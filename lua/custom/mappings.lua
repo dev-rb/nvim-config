@@ -35,7 +35,6 @@ M.abc = {
       end,
       "Go to right split",
     },
-    ["<leader>2"] = { "<C-w>v", "Split right" },
     ["<leader>x"] = { "<Cmd> :bp|bd# <CR>", "Close Buffer" },
     ["<leader>tt"] = {
       function()
@@ -54,6 +53,10 @@ M.abc = {
     ["<leader>gg"] = {
       "<cmd> LazyGit <CR>",
       "Lazygit",
+    },
+    ["<leader>fr"] = {
+      "<cmd> ArenaToggle <CR>",
+      "Toggle Arena for Recent files",
     },
   },
 }

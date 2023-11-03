@@ -16,7 +16,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- MDX
+lspconfig.mdx_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 -- Unocss
+-- https://github.com/xna00/unocss-language-server/issues/8
 lspconfig.unocss.setup {
   on_attach = on_attach,
   capabilities = capabilities,

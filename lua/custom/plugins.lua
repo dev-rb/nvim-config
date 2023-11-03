@@ -63,6 +63,12 @@ local M = {
     end,
   },
   {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      sources = { { name = "nvim_lsp", trigger_characters = { "-" } } },
+    },
+  },
+  {
     "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     opts = {

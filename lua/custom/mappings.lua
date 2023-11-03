@@ -58,6 +58,10 @@ M.abc = {
       "<cmd> ArenaToggle <CR>",
       "Toggle Arena for Recent files",
     },
+    ["<leader>lr"] = {
+      "<cmd> LspRestart <CR>",
+      "Restart Lsp",
+    },
   },
 }
 

@@ -270,6 +270,39 @@ local M = {
       require("bufresize").setup()
     end,
   },
+  {
+    "RRethy/vim-illuminate",
+    event = { "CursorHold", "CursorHoldI" },
+    dependencies = "nvim-treesitter",
+    config = function()
+      require("illuminate").configure {
+        under_cursor = true,
+        max_file_lines = nil,
+        delay = 100,
+        providers = {
+          "lsp",
+          "treesitter",
+          "regex",
+        },
+        filetypes_denylist = {
+          "NvimTree",
+          "Trouble",
+          "Outline",
+          "TelescopePrompt",
+          "Empty",
+          "dirvish",
+          "fugitive",
+          "alpha",
+          "packer",
+          "neogitstatus",
+          "spectre_panel",
+          "toggleterm",
+          "DressingSelect",
+          "aerial",
+        },
+      }
+    end,
+  },
 }
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("restore_session", { clear = true }),

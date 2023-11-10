@@ -6,6 +6,12 @@ M.ui = {
   statusline = { theme = "minimal", separator_style = "round" },
   tabufline = { enabled = false },
   nvdash = { load_on_startup = false },
+  -- lsp_semantic_tokens = true,
+  hl_add = {
+    ["IlluminatedWordText"] = { link = "Visual", underline = false },
+    ["IlluminatedWordRead"] = { link = "Visual", underline = false },
+    ["IlluminatedWordWrite"] = { link = "Visual", underline = false },
+  },
 }
 require "custom.statuscolumn"
 M.mappings = require "custom.mappings"

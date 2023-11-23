@@ -57,6 +57,9 @@ local M = {
         end,
       },
     },
+    opts = {
+      inlay_hints = { enable = true },
+    },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"

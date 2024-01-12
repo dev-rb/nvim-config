@@ -3,9 +3,9 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local custom_on_attach = function(client, buf)
   on_attach(client, buf)
-  if client.supports_method "textDocument/inlayHint" then
-    vim.lsp.inlay_hint.enable(buf, true)
-  end
+  -- if client.supports_method "textDocument/inlayHint" then
+  --   vim.lsp.inlay_hint.enable(buf, true)
+  -- end
 end
 
 capabilities.textDocument.foldingRange = {
@@ -66,18 +66,18 @@ require("typescript").setup {
     -- pass options to lspconfig's setup method
     on_attach = custom_on_attach,
     capabilities = capabilities,
-    init_options = {
-      preferences = {
-        includeInlayParameterNameHints = "none",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = false,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-        importModuleSpecifierPreference = "non-relative",
-      },
-    },
+    -- init_options = {
+    --   preferences = {
+    --     includeInlayParameterNameHints = "none",
+    --     includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+    --     includeInlayFunctionParameterTypeHints = false,
+    --     includeInlayVariableTypeHints = true,
+    --     includeInlayPropertyDeclarationTypeHints = true,
+    --     includeInlayFunctionLikeReturnTypeHints = true,
+    --     includeInlayEnumMemberValueHints = true,
+    --     importModuleSpecifierPreference = "non-relative",
+    --   },
+    -- },
   },
 }
 local util = require "lspconfig/util"

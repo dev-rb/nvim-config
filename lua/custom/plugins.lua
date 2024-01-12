@@ -1,6 +1,11 @@
 local WIDTH_RATIO = 0.3 -- You can change this too
 local HEIGHT_RATIO = 0.5 -- You can change this
 local M = {
+  -- {
+  --   -- snippet plugin
+  --   "L3MON4D3/LuaSnip",
+  --   enabled = false
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -58,7 +63,7 @@ local M = {
       },
     },
     opts = {
-      inlay_hints = { enable = true },
+      -- inlay_hints = { enable = true },
     },
     config = function()
       require "plugins.configs.lspconfig"

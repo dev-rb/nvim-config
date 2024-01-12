@@ -120,17 +120,16 @@ _G.StatusColumn = {
       [[ ]],
     },
     folds = {
-      [[%#FoldColumn#]], -- HL
+      -- [[%#FoldColumn#]], -- HL
       [[%@v:lua.StatusColumn.handler.fold@]],
       [[%{v:lua.StatusColumn.display.fold()}]],
     },
     border = {
-      [[%#StatusColumnBorder#]], -- HL
-      -- I don't like the border, but I might change my mind
-      [[%=%{v:lua.StatusColumn.display.border()}]],
+      -- [[%#StatusColumnBorder#]], -- HL
+      -- [[%=%{v:lua.StatusColumn.display.border()}]],
     },
     padding = {
-      [[%#StatusColumnBuffer#]], -- HL
+      -- [[%#StatusColumnBuffer#]], -- HL
       [[%{v:lua.StatusColumn.display.padding()}]],
     },
   },

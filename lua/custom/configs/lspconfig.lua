@@ -44,7 +44,7 @@ lspconfig.mdx_analyzer.setup {
 lspconfig.unocss.setup {
   on_attach = custom_on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "javascriptreact", "rescript", "typescriptreact", "vue", "svelte" },
+  filetypes = { "html", "javascriptreact", "rescript", "typescriptreact", "vue", "svelte", "typescript.tsx" },
   root_dir = function(fname)
     return require("lspconfig.util").root_pattern(
       "unocss.config.js",
@@ -80,6 +80,10 @@ require("typescript").setup {
     -- },
   },
 }
+-- lspconfig.eslint.setup {
+--   on_attach = custom_on_attach,
+--   capabilities = capabilities,
+-- }
 local util = require "lspconfig/util"
 
 -- Python

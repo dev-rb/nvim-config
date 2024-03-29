@@ -242,9 +242,15 @@ local M = {
   {
     "simrat39/rust-tools.nvim",
   },
-  { "mrjones2014/smart-splits.nvim", lazy = false, opts = {
-    multiplexer_integration = "WezTerm",
-  } },
+  {
+    "mrjones2014/smart-splits.nvim",
+    lazy = false,
+    opts = {
+      at_edge = "stop",
+      multiplexer = "wezterm",
+      disable_multiplexer_nav_when_zoomed = false,
+    },
+  },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",

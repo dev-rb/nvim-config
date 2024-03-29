@@ -4,6 +4,10 @@ local M = {}
 M.disabled = {
   n = {
     ["<C-c>"] = "",
+    ["<C-h>"] = "",
+    ["<C-l>"] = "",
+    ["<C-j>"] = "",
+    ["<C-k>"] = "",
   },
 }
 
@@ -35,7 +39,8 @@ M.abc = {
       end,
       "Go to right split",
     },
-    ["<leader>x"] = { "<Cmd> :bp|bd# <CR>", "Close Buffer" },
+    ["n"] = { "nzz", "Find next and center cusor" },
+    ["N"] = { "Nzz", "Find prev and center cusor" },
     ["<leader>tt"] = {
       function()
         require("base46").toggle_transparency()

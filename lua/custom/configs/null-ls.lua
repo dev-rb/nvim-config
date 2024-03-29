@@ -34,6 +34,7 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+  null_ls.builtins.code_actions.eslint_d,
 
   require "typescript.extensions.null-ls.code-actions",
 }
@@ -41,7 +42,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format {
     filter = function(client)
       -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls"
+      return client.name == "null-ls" or client.name == "eslint"
     end,
     bufnr = bufnr,
   }

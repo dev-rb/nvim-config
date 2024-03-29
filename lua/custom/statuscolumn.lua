@@ -1,8 +1,8 @@
 local icons = {
   collapsed = "",
   expanded = "",
-  border = "▐",
-  -- border = "▎"
+  -- border = "▐",
+  border = "▎",
 }
 
 local excluded_filetypes_for_ornaments = {
@@ -116,6 +116,9 @@ _G.StatusColumn = {
     line_number = {
       [[%=%{v:lua.StatusColumn.display.line_num()}]],
     },
+    half_spacing = {
+      [[ ]],
+    },
     spacing = {
       [[ ]],
     },
@@ -157,8 +160,8 @@ _G.StatusColumn = {
 
 vim.opt.statuscolumn = StatusColumn.build {
   StatusColumn.sections.folds,
-  StatusColumn.sections.sign_column,
+  StatusColumn.sections.half_spacing,
   StatusColumn.sections.line_number,
-  StatusColumn.sections.spacing,
+  StatusColumn.sections.sign_column,
   -- StatusColumn.sections.border,
 }

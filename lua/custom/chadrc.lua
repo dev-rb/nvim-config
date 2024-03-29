@@ -2,11 +2,11 @@
 local M = {}
 
 M.ui = {
-  theme = "radium",
+  theme = "everblush",
   statusline = { theme = "minimal", separator_style = "round" },
   tabufline = { enabled = false },
   nvdash = { load_on_startup = false },
-  -- lsp_semantic_tokens = true,
+  lsp_semantic_tokens = true,
   hl_add = {
     ["IlluminatedWordText"] = { link = "Visual", underline = false },
     ["IlluminatedWordRead"] = { link = "Visual", underline = false },
@@ -25,4 +25,8 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.g.skip_ts_context_commentstring_module = true
 vim.opt.swapfile = false
+
+vim.diagnostic.config {
+  virtual_text = true,
+}
 return M
